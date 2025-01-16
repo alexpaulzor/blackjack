@@ -52,7 +52,6 @@ class Shoe(object):
         self.shuffle()
 
     def shuffle(self):
-        print("(shuffling shoe)")
         random.shuffle(self._cards)
         self._undealt_cards = len(self._cards)
 
@@ -68,6 +67,7 @@ class Shoe(object):
     # [presuming they will be discarded])
     def cards(self, numcards=1):
         if numcards > self._undealt_cards:
+            print("(shuffling shoe)")
             self.shuffle()
         cards = [self._cards.pop(0) for i in range(numcards)]
         self._cards += cards

@@ -1,5 +1,6 @@
 def basic_strategy(
         hand, dealer_upcard_number, can_split=False, can_double_down=False):
+    # Compute basic strategy (as per wikipedia)
     allsplit = {
         2: "split",
         3: "split",

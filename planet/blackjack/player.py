@@ -101,9 +101,9 @@ class Better(Player):
     def new_round(self):
         self.hands = []
         if self.is_bankrupt:
-            print(f"{self} is bankrupt.")
             return
         bet = self.get_bet()
+        print(f"{self} bets ${bet}")
         self.money -= bet
         self.hands = [BetterHand(self.shoe.deal(), bet)]
 
@@ -116,19 +116,20 @@ class Better(Player):
 
     # Pay the player what they've won with hand.
     def reward_hand(self, hand):
-        if not hand.is_busted:
-            if (self.dealer.hand.is_busted or hand.sum > self.dealer.hand.sum
-                    or hand.is_blackjack and not self.dealer.hand.is_blackjack):
-                # Win, give player twice their bet (1 because they get their
-                # bet back, 1 because they won money from the house)
-                self.money += hand.bet * 2
-                print(f"{self}: {hand} > Win")
-            elif hand.sum == self.dealer.hand.sum:
-                # Push, return the player's bet.
-                self.money += hand.bet
-                print(f"{self}: {hand} > Push")
-            else:
-                print(f"{self}: {hand} > Lose")
+        if hand.is_busted:
+            print(f"{self}: {hand} > Lose ${hand.bet}")
+        elif (self.dealer.hand.is_busted or hand.sum > self.dealer.hand.sum
+                or hand.is_blackjack and not self.dealer.hand.is_blackjack):
+            # Win, give player twice their bet (1 because they get their
+            # bet back, 1 because they won money from the house)
+            print(f"{self}: {hand} > Win ${hand.bet}")
+            self.money += hand.bet * 2
+        elif hand.sum == self.dealer.hand.sum:
+            # Push, return the player's bet.
+            print(f"{self}: {hand} > Push")
+            self.money += hand.bet
+        else:
+            print(f"{self}: {hand} > Lose ${hand.bet}")
 
     def split(self, hand):
         if not self.can_afford(hand.bet):

@@ -11,12 +11,6 @@ from planet.blackjack.player import (
 )
 from planet.blackjack.utils import string_input, integer_input
 
-# Simulates Blackjack
-
-# USAGE: python3 blackjack.py
-# The Blackjack > prompt is the main menu.
-# Try typing "help" to see what you can do from there.
-
 
 # Simulates Blackjack
 class Blackjack(object):
@@ -86,6 +80,8 @@ class Blackjack(object):
         print("-" * 10 + f" Dealing Round {self.round} " + "-" * 10)
         self.show_table()
         for name, player in self.betters.items():
+            if not player.hands:
+                continue
             print()
             print("-" * 5 + f" {player}'s turn " + "-" * 5)
             player.play()
@@ -96,13 +92,15 @@ class Blackjack(object):
         print("-" * 20 + f" Round {self.round} Result " + "-" * 20)
         self.dealer.print_status()
         for name, player in self.betters.items():
+            if not player.hands:
+                continue
             player.end_round()
         print()
         self.round += 1
 
     @property
     def active_betters(self):
-        return [b for b in self.betters.values() if b.money > 0]
+        return [b for b in self.betters.values() if not b.is_bankrupt]
 
     def play_rounds(self, num_rounds=None):
         while self.active_betters and (num_rounds is None or num_rounds > 0):
@@ -127,7 +125,9 @@ class Blackjack(object):
                 'remove': ["removeplayer", "remove", "r", "-"],
                 'buy': ["buyin", "buy", "b", "money", "m", "$"],
                 'play': ["play", "p"],
-                'list': ["listplayers", "listplayer", "list", "l", "showplayers", "showplayer", "show", "s"],
+                'list': [
+                    "listplayers", "listplayer", "list", "l", "showplayers",
+                    "showplayer", "show", "s"],
                 'help': ["help", "h", "usage", "u", "?"],
             }
 
