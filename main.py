@@ -40,13 +40,3 @@ def main(ai, player, num_rounds, autoplay, interactive):
 
 if __name__ == '__main__':
     main()
-
-
-# TODO: write unit tests for basic scenarios
-# TODO: create simulation wrapper that can simulate a given scenario (number of
-#       players, buy-in amounts, max rounds or exit conditions) a given number
-#       of trials and produce a report on the expected result of a scenario
-#       (expected money for each player after a given number of rounds, or the
-#       expected number of rounds where another player will run out of money
-#       until no players are left)
-# TODO (bonus): implement a variant of the AI that can count cards
