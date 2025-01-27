@@ -24,8 +24,7 @@
 
 ## Testing
 
-    export PYTHONPATH=$PYTHONPATH:$PWD/planet
-    py.test -vvvsx
+    python3 -m pytest test/
 
 # Rules of the Game
 
