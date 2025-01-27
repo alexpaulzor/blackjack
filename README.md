@@ -66,3 +66,7 @@ on wikipedia, and there are `Computer` betters that faithfully execute the
 basic strategy for each hand.
 
 See `sim.py` for development TODOs.
+
+# Design
+
+TODO: Document class hierarchy with relevant attributes
