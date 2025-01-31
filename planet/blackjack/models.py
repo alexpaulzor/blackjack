@@ -45,8 +45,8 @@ class Shoe(object):
         self._cards = []
         # Hearts, Clubs, Diamonds, Spades
         suits = ["H", "C", "D", "S"]
-        for deck in range(1, decks):
-            for number in range(1, 13):
+        for deck in range(decks):
+            for number in range(1, 14):
                 for suit in suits:
                     self._cards.append(Card(number, suit))
         self.shuffle()

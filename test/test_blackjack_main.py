@@ -23,3 +23,8 @@ def test_blackjack_main(deterministic_game):
     assert players['ai1'].money == 1125
     assert players['ai2'].money == 1125
     assert players['ai3'].money == 1875
+
+
+def test_shoe_has_all_cards():
+    shoe = Shoe(decks=8)
+    assert len(shoe._cards) == 52 * 8
