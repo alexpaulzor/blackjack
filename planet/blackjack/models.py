@@ -79,7 +79,7 @@ class Hand(object):
     """A blackjack Hand"""
     def __init__(self, cards):
         if not isinstance(cards, list):
-            raise RuntimeError(f"{cards=} is not list")
+            raise RuntimeError(f"cards={cards} is not list")
         self.cards = cards
 
     @property
